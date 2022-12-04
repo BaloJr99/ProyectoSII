@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="ProyectoSII.LoginPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout BackgroundColor="LightGray" Padding="0, 20, 0, 0">
+        <Label Text="INSTITUTO TECNOLÓGICO DE PIEDRAS NEGRAS" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Black" Margin="10"/>
+        <Image Source="itpnlogo.png" WidthRequest="150" Margin="0,50,0,50"/>
+        
+        <Label Text="No. Control" Margin="20,0,20,0" TextColor="Black" />
+        <Frame  CornerRadius="5"  Margin="20,0,20,0" Padding="0" BackgroundColor="DarkGray">
+            <Entry Placeholder="8 digitos" x:Name="eUser">
+                <Entry.Behaviors>
+                    <xct:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                               MinimumValue="10000000"
+                                               MaximumValue="99999999"
+                                               MaximumDecimalPlaces="0"/>
+                </Entry.Behaviors>
+            </Entry>
+        </Frame>
+        <Label Text="NIP" Margin="20,25,20,0" TextColor="Black"/>
+        <Frame  CornerRadius="5"  Margin="20,0,20,0" Padding="0" BackgroundColor="DarkGray">
+            <Entry Placeholder="4 digitos" x:Name="ePassword" IsPassword="True">
+                <Entry.Behaviors>
+                    <xct:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                               MinimumValue="1000"
+                                               MaximumValue="9999"
+                                               MaximumDecimalPlaces="0"/>
+                </Entry.Behaviors>
+            </Entry>
+        </Frame>
+
+        <StackLayout Orientation="Horizontal">
+            <Button CornerRadius="5"  Text="Login" BackgroundColor="DeepSkyBlue" Margin="20,50,20,0" HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked"/>
+            <Button CornerRadius="5"  Text="Registrar" BackgroundColor="DeepSkyBlue" Margin="20,50,20,0" HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked_1"/>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
