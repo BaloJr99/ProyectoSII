@@ -4,9 +4,11 @@
              x:Class="ProyectoSII.Views.Inscripciones"
              Title="Inscripciones">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand"
-                     HorizontalOptions="CenterAndExpand" x:Name="mainPage">
-            
-        </StackLayout>
+        <ScrollView>
+            <StackLayout x:Name="mainPage" VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand" Orientation="Vertical">
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

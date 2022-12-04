@@ -39,7 +39,6 @@ namespace ProyectoSII.Views
         private async void getInscripciones()
         {
             IEnumerable<Horario> inscripciones = await App.SQLiteDB.GetInscripciones(StaticUsuario.Id);
-            mainPage.Children.Clear();
             if(inscripciones == null)
             {
                 StackLayout stack = new StackLayout
@@ -267,6 +266,21 @@ namespace ProyectoSII.Views
                     HorizontalTextAlignment = TextAlignment.Center
                 }, 8, 1);
                 mainPage.Children.Add(inscriptionGrid);
+                StackLayout stack = new StackLayout
+                {
+                    Orientation = StackOrientation.Vertical,
+                };
+
+                Button btnInscribir = new Button
+                {
+                    Text = "Finalizar",
+                    CornerRadius = 5,
+                    BackgroundColor = Color.DeepSkyBlue,
+                    HorizontalOptions = LayoutOptions.End
+                };
+
+                stack.Children.Add(btnInscribir);
+                mainPage.Children.Add(stack);
             }
         }
     }
