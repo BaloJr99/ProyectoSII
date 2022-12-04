@@ -21,6 +21,7 @@
                     <localM:FlyoutItemPage Title="Informacion Escolar" IconSource="school.png" TargetPage="{x:Type localV:InformacionEscolar}"/>
                     <localM:FlyoutItemPage Title="Inscripciones" IconSource="test.png" TargetPage="{x:Type localV:Inscripciones}"/>
                     <localM:FlyoutItemPage Title="Evaluacion Docente" IconSource="edit.png" TargetPage="{x:Type localV:EvaluacionDocente}"/>
+                    <localM:FlyoutItemPage Title="Mapa del tec" IconSource="gps.png" TargetPage="{x:Type localV:TecMap}"/>
                 </x:Array>
             </ListView.ItemsSource>
             <ListView.ItemTemplate>

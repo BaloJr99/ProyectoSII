@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:views="clr-namespace:ProyectoSII.ViewModel"
+             x:Class="ProyectoSII.Views.TecMap">
+    <StackLayout>
+        <Frame CornerRadius="0" BackgroundColor="#2196F3">
+            <Label Text="MAPA DEL TEC" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <maps:Map IsShowingUser="True" 
+                  MapType="Hybrid"
+                  TrafficEnabled="False"
+                  HasScrollEnabled="True"
+                  HasZoomEnabled="True"
+                  x:Name="myMap">
+            <maps:Map.Pins>
+                <maps:Pin Label="Sistemas">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.688799</x:Double>
+                                <x:Double>-100.569925</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Electronica">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.688399</x:Double>
+                                <x:Double>-100.570034</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Edificio K">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.688093</x:Double>
+                                <x:Double>-100.569768</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Computo Industial">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                        <x:Arguments>
+                            <x:Double>28.689015</x:Double>
+                            <x:Double>-100.570079</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Industrial">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.689394</x:Double>
+                                <x:Double>-100.570254</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Biblioteca">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.689770</x:Double>
+                                <x:Double>-100.569229</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Idiomas">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.689697</x:Double>
+                                <x:Double>-100.569835</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Básicas">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.689112</x:Double>
+                                <x:Double>-100.569607</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Audiovisual">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.689610</x:Double>
+                                <x:Double>-100.569535</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Audiovisual 2"
+                          Address="Escolares, Vinculación">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.688387</x:Double>
+                                <x:Double>-100.569646</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Administrativo">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.688485</x:Double>
+                                <x:Double>-100.568922</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Edificio H">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.689476</x:Double>
+                                <x:Double>-100.568817</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Edificio D">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.689243</x:Double>
+                                <x:Double>-100.569075</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Cafeteria">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.689146</x:Double>
+                                <x:Double>-100.569110</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Extraescolares">
+                    <maps:Pin.Position>
+                    <maps:Position>
+                        <x:Arguments>
+                            <x:Double>28.688899</x:Double>
+                                <x:Double>-100.569046</x:Double>
+                        </x:Arguments>
+                    </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="Centro de Información">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>28.688604</x:Double>
+                                <x:Double>-100.569259</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+            </maps:Map.Pins>
+        </maps:Map>
+    </StackLayout>
+</ContentPage>
