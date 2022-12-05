@@ -6,15 +6,37 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ProyectoSII
 {
     public partial class LoginPage : ContentPage
     {
+        SensorSpeed speed = SensorSpeed.Fastest;
+
         public LoginPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
+            Accelerometer.Start(speed);
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            Accelerometer.ShakeDetected -= Accelerometer_ShakeDetected;
+            Accelerometer.Stop();
+        }
+
+        private void Accelerometer_ShakeDetected(object sender, EventArgs e)
+        {
+            eUser.Text = "";
+            ePassword.Text = "";
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
