@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSII.Views.NuevaQueja">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#2196F3" CornerRadius="0">
+                <Label Text="Añadir Queja/Sugerencia" TextColor="White"
+                HorizontalOptions="CenterAndExpand" FontSize="36" HorizontalTextAlignment="Center"/>
+            </Frame>
+            <Label Text="Queja/Sugerencia" Margin="20" Padding="0" FontSize="20"/>
+            <Frame  CornerRadius="5"  Margin="20,0,20,0" Padding="0" BackgroundColor="White">
+                <Entry x:Name="eQueja"/>
+            </Frame>
+            <Label Text="Sección" Margin="20" Padding="0" FontSize="20"/>
+            <Frame  CornerRadius="5"  Margin="20,0,20,0" Padding="0" BackgroundColor="White">
+                <Picker x:Name="section">
+                    <Picker.Items>
+                        <x:String>Perfil</x:String>
+                        <x:String>Kardex</x:String>
+                        <x:String>Boleta</x:String>
+                        <x:String>Calificaciones</x:String>
+                        <x:String>Información Escolar</x:String>
+                        <x:String>Inscripciones</x:String>
+                        <x:String>Evaluación Docente</x:String>
+                        <x:String>Mapa del Tec</x:String>
+                        <x:String>Quejas y Sugerencias</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Frame>
+
+            <Button Text="Enviar" CornerRadius="5" BackgroundColor="DeepSkyBlue" HorizontalOptions="FillAndExpand" Margin="20,20" Clicked="Button_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

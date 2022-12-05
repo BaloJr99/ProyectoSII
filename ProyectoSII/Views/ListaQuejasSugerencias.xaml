@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:ProyectoSII.ViewModel"
+             x:Class="ProyectoSII.Views.ListaQuejasSugerencias">
+    <ContentPage.BindingContext>
+        <viewModel:ListaQuejas/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" CornerRadius="0">
+            <Label Text="Tus Quejas y Sugerencias" HorizontalTextAlignment="Center" TextColor="White" FontSize="36" Padding="0"/>
+        </Frame>
+        <CollectionView ItemsSource="{Binding ListaDeQuejas}" Margin="20,20">
+            <CollectionView.ItemTemplate> 
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal" Padding="0, 10">
+                        <Label Text="{Binding Fecha, StringFormat='{0:dd/MM/yyy}'}" FontSize="15"/>
+                        <Label Text="{Binding Queja}" FontSize="15" TextColor="Red"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="+ Nueva Queja" CornerRadius="5" BackgroundColor="DeepSkyBlue" HorizontalOptions="FillAndExpand" Margin="20,20" Clicked="Button_Clicked"/>
+    </StackLayout>
+</ContentPage>
