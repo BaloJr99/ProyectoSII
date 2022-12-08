@@ -7,6 +7,7 @@ using Android.OS;
 using Xamarin.Forms;
 using ProyectoSII.Views;
 using Android;
+using Acr.UserDialogs;
 
 namespace ProyectoSII.Droid
 {
@@ -41,6 +42,7 @@ namespace ProyectoSII.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
+            UserDialogs.Init(this);
             LoadApplication(new App());
 
             MessagingCenter.Subscribe<Inscripciones>(this, "SetLandscape", sender =>

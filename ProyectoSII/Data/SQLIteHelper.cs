@@ -756,7 +756,7 @@ namespace ProyectoSII.Data
             return perfil;
         }
 
-        internal async Task<InformacionEscolarModel> GetInformacionEscolar()
+        public async Task<InformacionEscolarModel> GetInformacionEscolar()
         {
             float Promedio = 0;
             AlumnoReticula alumnoReticula = await _connection.Table<AlumnoReticula>().Where(ret => ret.IdAlumno == StaticUsuario.Id).FirstOrDefaultAsync();
@@ -811,6 +811,38 @@ namespace ProyectoSII.Data
                 };
             }
             return informacionEscolarModel;
+        }
+
+        public async Task<bool> SaveInformacionEscolar(InformacionEscolarModel infoEscolar)
+        {
+            try
+            {
+                InformacionEscolar info = new InformacionEscolar
+                {
+                    Calle = infoEscolar.Calle,
+                    Ciudad = infoEscolar.Ciudad,
+                    CodigoPostal = infoEscolar.CodigoPostal,
+                    Colonia = infoEscolar.Colonia,
+                    Correo = infoEscolar.Correo,
+                    Entidad = infoEscolar.Entidad,
+                    NumControl = infoEscolar.NumControl,
+                    NumExt = infoEscolar.NumExt,
+                    NumInt = infoEscolar.NumInt,
+                    NumTelefono = infoEscolar.Telefono
+                };
+                if (infoEscolar.IdInformacion == 0)
+                {
+                    await _connection.InsertAsync(info);
+                }
+                else
+                {
+                    info.IdInformacionEscolar = infoEscolar.IdInformacion;
+                    await _connection.UpdateAsync(info);
+                }
+                return true;
+            }catch(Exception ex) {
+                return false;
+            }
         }
     }
 }

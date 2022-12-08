@@ -14,8 +14,8 @@ namespace ProyectoSII.Models
         public string NumControl { get; set; }
         public string Calle { get; set; }
         public string Colonia { get; set; }
-        public int NumInt { get; set; }
-        public string NumExt { get; set; }
+        public string NumInt { get; set; }
+        public int NumExt { get; set; }
         public int CodigoPostal { get; set; }
         public string Ciudad { get; set; }
         public string Entidad { get; set; }

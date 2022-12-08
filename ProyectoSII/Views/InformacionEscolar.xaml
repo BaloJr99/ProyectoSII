@@ -47,15 +47,15 @@
             </Frame>
             <StackLayout Orientation="Horizontal">
                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                    <Label Text="Num Int"/>
-                    <Frame  CornerRadius="5" Padding="0">
-                        <Entry Text="{Binding NumInt}" FontSize="Small"/>
-                    </Frame>
-                </StackLayout>
-                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <Label Text="Num Ext"/>
                     <Frame  CornerRadius="5" Padding="0">
                         <Entry Text="{Binding NumExt}" FontSize="Small"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                    <Label Text="Num Int"/>
+                    <Frame  CornerRadius="5" Padding="0">
+                        <Entry Text="{Binding NumInt}" FontSize="Small"/>
                     </Frame>
                 </StackLayout>
             </StackLayout>
@@ -67,7 +67,7 @@
             <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
                 <Entry Text="{Binding Ciudad}" FontSize="Small"/>
             </Frame>
-            <Label Text="Calle"/>
+            <Label Text="Entidad"/>
             <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
                 <Entry Text="{Binding Entidad}" FontSize="Small"/>
             </Frame>

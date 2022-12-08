@@ -1,10 +1,13 @@
-﻿using ProyectoSII.Models;
+﻿using Acr.UserDialogs;
+using FluentValidation.Results;
+using ProyectoSII.Models;
 using ProyectoSII.Servicios;
 using ProyectoSII.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 using static Xamarin.Essentials.Permissions;
 
@@ -13,18 +16,49 @@ namespace ProyectoSII.ViewModel
     public class InformacionEscolarVM:InformacionEscolarModel
     {
         public Command Guardar { get; set; }
-        private readonly PerfilService service = new PerfilService();
+
         InformacionEscolarModel infoEscolar;
 
-        public InformacionEscolarVM()
+        public InformacionEscolarVM(INavigation navigation)
         {
             Task.Run(GetInformacionEscolar);
-            Guardar = new Command(async () => await GuardarInformacion());
+            Guardar = new Command(async () => await GuardarInformacion(navigation));
         }
 
-        private async Task GuardarInformacion()
+        private async Task GuardarInformacion(INavigation navigation)
         {
-
+            InformacionEscolarValidacion validation = new InformacionEscolarValidacion();
+            infoEscolar = new InformacionEscolarModel
+            {
+                IdInformacion = IdInformacion,
+                NumControl = NumControl,
+                NombreAlumno = NombreAlumno,
+                Semestre = Semestre,
+                Entidad = Entidad,
+                Correo = Correo,
+                Colonia = Colonia,
+                Calle = Calle,
+                Telefono = Telefono,
+                Carrera = Carrera,
+                Ciudad = Ciudad,
+                CodigoPostal = CodigoPostal,
+                Especialidad = Especialidad,
+                NumExt = NumExt,
+                NumInt = NumInt,
+                Promedio = Promedio
+            };
+            ValidationResult result = validation.Validate(infoEscolar);
+            if (result.IsValid)
+            {
+                if(await App.SQLiteDB.SaveInformacionEscolar(infoEscolar))
+                {
+                    UserDialogs.Instance.Alert("Datos Guardados", "Información", "Ok");
+                }
+            }
+            else
+            {
+                UserDialogs.Instance.Alert(result.Errors[0].ToString(), "Advertencia", "Ok");
+            }
         }
 
         private async Task GetInformacionEscolar()

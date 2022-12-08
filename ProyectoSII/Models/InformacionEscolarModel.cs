@@ -107,9 +107,9 @@ namespace ProyectoSII.Models
             }
 		}
 
-		private int numInt;
+		private string numInt;
 
-		public int NumInt
+		public string NumInt
 		{
 			get { return numInt; }
 			set { numInt = value;
@@ -117,9 +117,9 @@ namespace ProyectoSII.Models
             }
 		}
 
-		private string numExt;
+		private int numExt;
 
-		public string NumExt
+		public int NumExt
 		{
 			get { return numExt; }
 			set { numExt = value;

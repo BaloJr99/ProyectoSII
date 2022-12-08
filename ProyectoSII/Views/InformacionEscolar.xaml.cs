@@ -13,11 +13,10 @@ namespace ProyectoSII.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InformacionEscolar : ContentPage
     {
-        InformacionEscolarVM informacionVM = new InformacionEscolarVM();
         public InformacionEscolar()
         {
             InitializeComponent();
-            this.BindingContext = informacionVM;
+            this.BindingContext = new InformacionEscolarVM(Navigation);
         }
     }
 }
