@@ -14,7 +14,7 @@ namespace ProyectoSII.Models
         public int IdAlumno { get; set; }
         [ForeignKey(typeof(Asignatura))]
         public string IdAsignatura { get; set; }
-        public string Calificacion { get; set; }
+        public float Calificacion { get; set; }
         public bool Aprobada { get; set; }
     }
 }

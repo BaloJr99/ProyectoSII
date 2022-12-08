@@ -42,7 +42,7 @@
                     </TapGestureRecognizer>
                 </Image.GestureRecognizers>
             </Image>
-            <Button Text="REGISTRAR" BackgroundColor="DeepSkyBlue" CornerRadius="5" Clicked="Button_Clicked" Margin="0,0,0,20"></Button>
+            <Button Text="REGISTRAR" BackgroundColor="DeepSkyBlue" TextColor="White" CornerRadius="5" Clicked="Button_Clicked" Margin="0,0,0,20"></Button>
         </StackLayout>
     </ScrollView>
 </ContentPage>

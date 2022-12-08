@@ -37,6 +37,7 @@ namespace ProyectoSII.Views
                     ApellidoPaterno = eApellidoP.Text,
                     ApellidoMaterno = eApellidoM.Text,
                     NumControl = eControl.Text,
+                    FechaNacimiento = dpFecha.Date,
                     FotoPerfil = fotoperfil,
                     Semestre = ChoosenSemester.SelectedItem.ToString()
                 };

@@ -3,13 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoSII.Views.MenuPrincipal"
              xmlns:local="clr-namespace:ProyectoSII.Views"
-             NavigationPage.HasNavigationBar="False"
-            Title="Menu">
+             NavigationPage.HasBackButton="False">
 
     <FlyoutPage.Flyout>
         <local:FlyoutMenuPage x:Name="flyout"/>
     </FlyoutPage.Flyout>
 
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <StackLayout>
+                <Label Text="Sistema de Información" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+            </StackLayout>
+            <StackLayout>
+                <Image Source="itpnlogo.png" WidthRequest="30" VerticalOptions="Center"/>
+            </StackLayout>
+        </StackLayout>
+    </NavigationPage.TitleView>
     <FlyoutPage.Detail>
         <NavigationPage>
             <x:Arguments>

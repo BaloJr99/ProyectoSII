@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoSII.Views.Kardex"
-             Title="Kardex" Icon="kardex.png">
+             Title="Kardex" IconImageSource="kardex.png">
     <Grid BackgroundColor="LightGray" x:Name="KardexGrid">
     </Grid>
 </ContentPage>

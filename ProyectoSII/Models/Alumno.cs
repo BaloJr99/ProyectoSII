@@ -27,5 +27,7 @@ namespace ProyectoSII.Models
         public AlumnoReticula AlumnoReticula { get; set; }
         [OneToMany]
         public HashSet<Boleta> Boletas { get; set; }
+        [OneToOne]
+        public InformacionEscolar InformacionEscolar { get; set; }
     }
 }

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModel="clr-namespace:ProyectoSII.ViewModel"
-             x:Class="ProyectoSII.Views.ListaQuejasSugerencias">
+             x:Class="ProyectoSII.Views.ListaQuejasSugerencias"
+             Title="Quejas y Sugerencias">
     <ContentPage.BindingContext>
         <viewModel:ListaQuejas/>
     </ContentPage.BindingContext>
@@ -20,6 +21,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Text="+ Nueva Queja" CornerRadius="5" BackgroundColor="DeepSkyBlue" HorizontalOptions="FillAndExpand" Margin="20,20" Clicked="Button_Clicked"/>
+        <Button Text="+ Nueva Queja" CornerRadius="5" TextColor="White" BackgroundColor="DeepSkyBlue" HorizontalOptions="FillAndExpand" Margin="20,20" Clicked="Button_Clicked"/>
     </StackLayout>
 </ContentPage>

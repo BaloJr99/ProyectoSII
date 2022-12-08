@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
+using Lottie.Forms.Platforms.Ios;
+using ProyectoSII.Views;
 using UIKit;
+using Xamarin.Forms;
 
 namespace ProyectoSII.iOS
 {
@@ -21,11 +24,32 @@ namespace ProyectoSII.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            Xamarin.FormsMaps.Init();
-            LoadApplication(new App());
+            if(Window == null)
+            {
+                Window = new UIWindow(frame: UIScreen.MainScreen.Bounds);
+                var initialViewController = new SplashViewController();
+                Window.RootViewController = initialViewController;
+                Window.MakeKeyAndVisible();
+                return true;
+            }
+            else
+            {
+                global::Xamarin.Forms.Forms.Init();
+                AnimationViewRenderer animationView = new AnimationViewRenderer();
+                animationView.Init();
+                Xamarin.FormsMaps.Init();
+                LoadApplication(new App());
+                MessagingCenter.Subscribe<Inscripciones>(this, "SetLandscape", sender =>
+                {
+                    UIDevice.CurrentDevice.SetValueForKey(new NSNumber((int)UIInterfaceOrientation.LandscapeLeft), new NSString("orientation"));
+                });
+                MessagingCenter.Subscribe<Inscripciones>(this, "RemoveLandscape", sender =>
+                {
+                    UIDevice.CurrentDevice.SetValueForKey(new NSNumber((int)UIInterfaceOrientation.Unknown  ), new NSString("orientation"));
+                });
 
-            return base.FinishedLaunching(app, options);
+                return base.FinishedLaunching(app, options);
+            }
         }
     }
 }

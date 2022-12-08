@@ -5,8 +5,8 @@ using SQLite;
 using ProyectoSII.Models;
 using System.Threading.Tasks;
 using System.Linq;
-using Boleta = ProyectoSII.Models.Boleta;
 using System.ComponentModel;
+using ProyectoSII.ViewModel;
 
 namespace ProyectoSII.Data
 {
@@ -26,8 +26,8 @@ namespace ProyectoSII.Data
             _connection.CreateTableAsync<ReticulaMateria>().Wait();
             _connection.CreateTableAsync<AlumnoReticula>().Wait();
             _connection.CreateTableAsync<Boleta>().Wait();
-            _connection.DropTableAsync<Horario>().Wait();
             _connection.CreateTableAsync<Horario>().Wait();
+            _connection.CreateTableAsync<InformacionEscolar>().Wait();
         }
 
         public async Task<int> SaveAlumnoAsync(Alumno alum)
@@ -77,7 +77,6 @@ namespace ProyectoSII.Data
                     StaticUsuario.FechaNacimiento = loggedUser.FechaNacimiento;
                     StaticUsuario.FotoPerfil = loggedUser.FotoPerfil;
                     StaticUsuario.Semestre = loggedUser.Semestre;
-                    await FillData();
                     return loggedUser.IdAlumno;
                 }
             }
@@ -715,6 +714,103 @@ namespace ProyectoSII.Data
         public async Task<string> GetAsignatura(string clave)
         {
             return (await _connection.Table<Asignatura>().Where(asg => asg.ClaveAsignatura == clave).FirstOrDefaultAsync()).NombreAsignatura;
+        }
+
+        public async Task<bool> EditPerfil(PerfilModel perfil)
+        {
+            try
+            {
+                Alumno alumno = new Alumno
+                {
+                    IdAlumno = StaticUsuario.Id,
+                    Nombre = perfil.Nombre,
+                    ApellidoPaterno = perfil.ApellidoPaterno,
+                    ApellidoMaterno = perfil.ApellidoMaterno,
+                    NumControl = perfil.NumControl,
+                    FechaNacimiento = perfil.FechaNacimiento,
+                    FotoPerfil = perfil.FotoPerfil,
+                    Semestre = perfil.Semestre
+                };
+                await _connection.UpdateAsync(alumno);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public async Task<PerfilModel> GetPerfil()
+        {
+            Alumno alumno = await _connection.Table<Alumno>().Where(al => al.IdAlumno == StaticUsuario.Id).FirstOrDefaultAsync();
+            PerfilModel perfil = new PerfilModel
+            {
+                Nombre = alumno.Nombre,
+                ApellidoPaterno = alumno.ApellidoPaterno,
+                ApellidoMaterno = alumno.ApellidoMaterno,
+                FechaNacimiento = alumno.FechaNacimiento,
+                FotoPerfil = alumno.FotoPerfil,
+                NumControl = alumno.NumControl,
+                Semestre = alumno.Semestre
+            };
+            return perfil;
+        }
+
+        internal async Task<InformacionEscolarModel> GetInformacionEscolar()
+        {
+            float Promedio = 0;
+            AlumnoReticula alumnoReticula = await _connection.Table<AlumnoReticula>().Where(ret => ret.IdAlumno == StaticUsuario.Id).FirstOrDefaultAsync();
+            Reticula reticula = await _connection.Table<Reticula>().Where(ret => ret.IdReticula == alumnoReticula.IdReticula).FirstOrDefaultAsync();
+            Carrera carrera = await _connection.Table<Carrera>().Where(car => car.ClaveCarrera == reticula.IdCarrera).FirstOrDefaultAsync();
+            Especialidad especialidad = await _connection.Table<Especialidad>().Where(esp => esp.ClaveEspecialidad == reticula.IdEspecialidad).FirstOrDefaultAsync();
+            InformacionEscolar informacionEscolar = await _connection.Table<InformacionEscolar>().Where(info => info.NumControl == StaticUsuario.NumControl).FirstOrDefaultAsync();
+            IEnumerable<Boleta> boletas = await _connection.Table<Boleta>().Where(bol => bol.Aprobada == true).ToListAsync();
+            foreach (var boleta in boletas)
+            {
+                Promedio += boleta.Calificacion;
+            }
+
+            if(Promedio != 0)
+            {
+                Promedio /= boletas.Count();
+            }
+
+            InformacionEscolarModel informacionEscolarModel;
+            if(informacionEscolar != null)
+            {
+                informacionEscolarModel = new InformacionEscolarModel
+                {
+                    IdInformacion = informacionEscolar.IdInformacionEscolar,
+                    NumControl= StaticUsuario.NumControl,
+                    NombreAlumno= StaticUsuario.Nombre + " " + StaticUsuario.ApellidoPaterno + " " + StaticUsuario.ApellidoMaterno,
+                    Semestre = StaticUsuario.Semestre,
+                    Entidad = informacionEscolar.Entidad,
+                    Correo = informacionEscolar.Correo,
+                    Colonia = informacionEscolar.Colonia,
+                    Calle = informacionEscolar.Calle,
+                    Telefono = informacionEscolar.NumTelefono,
+                    Carrera = carrera.NombreCarrera,
+                    Ciudad = informacionEscolar.Ciudad,
+                    CodigoPostal = informacionEscolar.CodigoPostal,
+                    Especialidad = especialidad.NombreEspecialidad,
+                    NumExt = informacionEscolar.NumExt,
+                    NumInt = informacionEscolar.NumInt,
+                    Promedio = Promedio
+                };
+            }
+            else
+            {
+                informacionEscolarModel = new InformacionEscolarModel
+                {
+                    NumControl = StaticUsuario.NumControl,
+                    NombreAlumno = StaticUsuario.Nombre + " " + StaticUsuario.ApellidoPaterno + " " + StaticUsuario.ApellidoMaterno,
+                    Semestre = StaticUsuario.Semestre,
+                    Carrera = carrera.NombreCarrera,
+                    Especialidad = especialidad.NombreEspecialidad,
+                    Promedio = Promedio
+                };
+            }
+            return informacionEscolarModel;
         }
     }
 }

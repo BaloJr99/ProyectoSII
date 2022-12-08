@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoSII.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace ProyectoSII.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InformacionEscolar : ContentPage
     {
+        InformacionEscolarVM informacionVM = new InformacionEscolarVM();
         public InformacionEscolar()
         {
             InitializeComponent();
+            this.BindingContext = informacionVM;
         }
     }
 }

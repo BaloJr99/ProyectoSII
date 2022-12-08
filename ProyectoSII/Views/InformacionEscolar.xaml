@@ -3,11 +3,83 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoSII.Views.InformacionEscolar"
              Title="Informacion Escolar">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Informacion Escolar"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <ScrollView>
+        <StackLayout Margin="20, 0, 20, 0">
+            <Label Text="Información Escolar" HorizontalTextAlignment="Center" FontSize="Large" FontAttributes="Bold" TextColor="Red" Margin="0, 20, 0, 0"/>
+            <Label Text="Nombre"/>
+            
+            <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
+                <Entry Text="{Binding NombreAlumno}" FontSize="Small" IsEnabled="false"/>
+            </Frame>
+            <Label Text="Numero de Control"/>
+            <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
+                <Entry Text="{Binding NumControl}" FontSize="Small" IsEnabled="false"/>
+            </Frame>
+            <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                    <Label Text="Semestre"/>
+                    <Frame  CornerRadius="5" Padding="0">
+                        <Entry Text="{Binding Semestre}" FontSize="Small" IsEnabled="false"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                    <Label Text="Promedio"/>
+                    <Frame  CornerRadius="5" Padding="0">
+                        <Entry Text="{Binding Promedio}" FontSize="Small" IsEnabled="false"/>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+            <Label Text="Carrera"/>
+            <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
+                <Entry Text="{Binding Carrera}" FontSize="Small" IsEnabled="false"/>
+            </Frame>
+            <Label Text="Especialidad"/>
+            <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
+                <Entry Text="{Binding Especialidad}" FontSize="Small" IsEnabled="false"/>
+            </Frame>
+            <Label Text="Calle"/>
+            <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
+                <Entry Text="{Binding Calle}" FontSize="Small"/>
+            </Frame>
+            <Label Text="Colonia"/>
+            <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
+                <Entry Text="{Binding Colonia}" FontSize="Small"/>
+            </Frame>
+            <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                    <Label Text="Num Int"/>
+                    <Frame  CornerRadius="5" Padding="0">
+                        <Entry Text="{Binding NumInt}" FontSize="Small"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                    <Label Text="Num Ext"/>
+                    <Frame  CornerRadius="5" Padding="0">
+                        <Entry Text="{Binding NumExt}" FontSize="Small"/>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+            <Label Text="Codigo Postal"/>
+            <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
+                <Entry Text="{Binding CodigoPostal}" FontSize="Small"/>
+            </Frame>
+            <Label Text="Ciudad"/>
+            <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
+                <Entry Text="{Binding Ciudad}" FontSize="Small"/>
+            </Frame>
+            <Label Text="Calle"/>
+            <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
+                <Entry Text="{Binding Entidad}" FontSize="Small"/>
+            </Frame>
+            <Label Text="Telefono"/>
+            <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
+                <Entry Text="{Binding Telefono}" FontSize="Small"/>
+            </Frame>
+            <Label Text="Correo"/>
+            <Frame  CornerRadius="5" Padding="0" BorderColor="Black">
+                <Entry Text="{Binding Correo}" FontSize="Small"/>
+            </Frame>
+            <Button Text="GUARDAR" BackgroundColor="DeepSkyBlue" TextColor="White" CornerRadius="5" Command="{Binding Guardar}" Margin="0,0,0,20"></Button>
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>

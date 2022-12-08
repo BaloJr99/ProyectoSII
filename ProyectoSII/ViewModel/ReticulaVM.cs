@@ -12,8 +12,8 @@ namespace ProyectoSII.ViewModel
         public List<Semester> Semesters { get; set; }
 
         public ReticulaVM()
-        {
-            Semesters = GetSemesters().OrderBy(s => s.Key).ToList();
+        { 
+           Semesters = GetSemesters().OrderBy(s => s.Key).ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -48,15 +48,12 @@ namespace ProyectoSII.ViewModel
                 new Semester(){Key = 6, Value = "Semestre 6"},
                 new Semester(){Key = 7, Value = "Semestre 7"},
                 new Semester(){Key = 8, Value = "Semestre 8"},
-                new Semester(){Key = 9, Value = "Semestre 9"},
-                new Semester(){Key = 10, Value = "Semestre 10"},
-                new Semester(){Key = 11, Value = "Semestre 11"},
-                new Semester(){Key = 12, Value = "Semestre 12"},
+                new Semester(){Key = 9, Value = "Semestre 9"}
             };
 
             return semesters;
         }
-        
+
     }
 
     public class Semester
