@@ -23,19 +23,6 @@ namespace ProyectoSII.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        private Semester _selectedSemester { get; set; }
-        public Semester SelectedSemester
-        {
-            get { return _selectedSemester; }
-            set
-            {
-                if(_selectedSemester != value)
-                {
-                    _selectedSemester = value;
-                }
-            }
-        }
-
         public List<Semester> GetSemesters()
         {
             var semesters = new List<Semester>()

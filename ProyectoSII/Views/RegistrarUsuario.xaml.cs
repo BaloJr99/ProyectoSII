@@ -31,6 +31,7 @@ namespace ProyectoSII.Views
         {
             if (!camposVacios())
             {
+                Semester Semestre = (Semester)ChoosenSemester.SelectedItem;
                 Alumno alumno = new Alumno
                 {
                     Nombre = eNombre.Text,
@@ -39,7 +40,7 @@ namespace ProyectoSII.Views
                     NumControl = eControl.Text,
                     FechaNacimiento = dpFecha.Date,
                     FotoPerfil = fotoperfil,
-                    Semestre = ChoosenSemester.SelectedItem.ToString()
+                    Semestre = Semestre.Value
                 };
                 alumno.IdAlumno = await App.SQLiteDB.SaveAlumnoAsync(alumno);
 

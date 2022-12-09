@@ -3,6 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoSII.Views.Kardex"
              Title="Kardex" IconImageSource="kardex.png">
-    <Grid BackgroundColor="LightGray" x:Name="KardexGrid">
-    </Grid>
+
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Margin="20">
+                <Label Text="{Binding Promedio}" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <ListView ItemsSource="{Binding ListaBoletasKardex}" SelectionMode="None" BackgroundColor="LightGray" RowHeight="300">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame BackgroundColor="White" CornerRadius="5">
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout BackgroundColor="DeepSkyBlue" Margin="20,0">
+                                        <Label Text="{Binding Titulo}" TextColor="Black" HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <ListView ItemsSource="{Binding ListBoleta}" SelectionMode="None" HasUnevenRows="true" Margin="20">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="30"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Label Text="{Binding Asignatura}" Grid.Column="0" VerticalTextAlignment="Center"/>
+                                                        <Label Text="{Binding Calificacion}" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

@@ -1,4 +1,5 @@
 ﻿using ProyectoSII.Models;
+using ProyectoSII.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace ProyectoSII.Views
         public Kardex()
         {
             InitializeComponent();
+            BindingContext = new KardexVM();
         }
     }
 }

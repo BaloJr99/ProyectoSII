@@ -17,5 +17,6 @@ namespace ProyectoSII.Models
         public float Calificacion { get; set; }
         public bool Aprobada { get; set; }
         public bool Cursando { get; set; }
+        public string Periodo { get; set; }
     }
 }

@@ -3,12 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoSII.Views.Boleta"
              Title="Boleta"
-             IconImageSource="boleta.png">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Bienvenido a la boleta"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             IconImageSource="boleta.png"
+             BackgroundColor="LightGray">
+    <StackLayout>
+        <Frame  CornerRadius="5" Padding="0" Margin="20" BackgroundColor="LightSkyBlue">
+            <Picker
+                Title="--Seleccione--" 
+                ItemsSource="{Binding ListPeriodos}"
+                ItemDisplayBinding="{Binding Value}"
+                SelectedItem="{Binding SelectedPeriod}">
+            </Picker>
+        </Frame>
+        <Frame CornerRadius="5" Margin="20" IsVisible="{Binding IsVisible}">
+            <ListView ItemsSource="{Binding ListBoleta}" SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid BackgroundColor="LightGray">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+                                <BoxView BackgroundColor="White" Grid.Column="0"/>
+                                <BoxView BackgroundColor="White" Grid.Column="1"/>
+                                <Label Text="{Binding Asignatura}" Grid.Column="0" VerticalTextAlignment="Center" Padding="10"/>
+                                <Label Text="{Binding Calificacion}" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Frame>
+    </StackLayout>
 </ContentPage>
