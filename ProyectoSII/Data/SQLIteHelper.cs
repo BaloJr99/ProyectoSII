@@ -658,12 +658,12 @@ namespace ProyectoSII.Data
 
         public async Task CreaHorarioRegistraCalificaciones()
         {
-            List<Boleta> boletas = await _connection.Table<Boleta>().Where(bol => bol.IdAlumno == StaticUsuario.Id && bol.Cursando == true).ToListAsync();
+            List<Boleta> boletas = await _connection.Table<Boleta>().Where(bol => bol.IdAlumno == StaticUsuario.Id && bol.Cursando == false).ToListAsync();
             foreach (var boleta in boletas)
             {
                 Boleta boletaModificar = boleta;
                 boletaModificar.Calificacion = new Random().Next(60, 100);
-                if (boletaModificar.Calificacion < 60)
+                if (boletaModificar.Calificacion < 70)
                 {
                     boletaModificar.Aprobada = false;
                 }
@@ -674,6 +674,10 @@ namespace ProyectoSII.Data
                 boletaModificar.Cursando = false;
                 await _connection.UpdateAsync(boletaModificar);
             }
+
+            Alumno alumno = await _connection.Table<Alumno>().Where(al => al.IdAlumno == StaticUsuario.Id).FirstOrDefaultAsync();
+            alumno.Semestre = "Semestre 2";
+            await _connection.UpdateAsync(alumno);
 
             List<Horario> horarios = new List<Horario>() {
                     new Horario
@@ -992,6 +996,27 @@ namespace ProyectoSII.Data
                 Calificacion = (float)Decimal.Round((decimal)promedio / boletas.Count(), 0),
             });
             return boletas;
+        }
+
+        public async Task<string> CheckMateria(string claveAsignatura)
+        {
+            Boleta boleta = await _connection.Table<Boleta>().Where(bol => bol.IdAsignatura == claveAsignatura).FirstOrDefaultAsync();
+            if (boleta != null)
+            {
+                if (boleta.Cursando == true)
+                {
+                    return "Cursando";
+                }
+                else if (boleta.Aprobada == true)
+                {
+                    return "Aprobada";
+                }
+                else if (boleta.Aprobada == false)
+                {
+                    return "Reprobada";
+                }
+            }
+            return "";
         }
     }
 }

@@ -19,7 +19,8 @@ namespace ProyectoSII.Views
         {
             InitializeComponent();
             BindingContext = new ReticulaVM();
-            ChoosenSemester.SelectedIndex = 0;
+            int Semestre = Int32.Parse(StaticUsuario.Semestre.Split(' ')[1]);
+            ChoosenSemester.SelectedIndex = Semestre - 1;
         }
 
         private async Task FillKardex(int semester)
@@ -89,7 +90,26 @@ namespace ProyectoSII.Views
                 stackLayoutHeader.Children.Add(lblHt);
                 stackLayoutHeader.Children.Add(lblHp);
                 stackLayoutHeader.Children.Add(lblTc);
-                StackLayout stackLayout = new StackLayout {Orientation = StackOrientation.Vertical};
+
+                Color background = Color.White;
+                string resultado = await App.SQLiteDB.CheckMateria(Asignaturas[index].ClaveAsignatura);
+                if (resultado == "Aprobada")
+                {
+                    background = Color.LightGreen;
+                }
+                else if(resultado == "Reprobada")
+                {
+                    background = Color.FromHex("#FFEC7F");
+                }
+                else if (resultado == "Cursando")
+                {
+                    background = Color.FromHex("#D390FF");
+                }
+
+                StackLayout stackLayout = new StackLayout {
+                    BackgroundColor = background,
+                    Orientation = StackOrientation.Vertical
+                };
                 stackLayout.Children.Add(stackLayoutHeader);
                 Label asignatura = new Label
                 {
