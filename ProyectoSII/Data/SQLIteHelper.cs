@@ -689,19 +689,27 @@ namespace ProyectoSII.Data
         }
         public async Task<IEnumerable<Horario>> GetInscripciones(int id)
         {
-            int idReticula = (await _connection.Table<AlumnoReticula>().Where(alret => alret.IdAlumno == id).FirstOrDefaultAsync()).IdReticula;
-            var semester = Int16.Parse(StaticUsuario.Semestre.Split(' ').ElementAt(1));
-            List<string> calificaciones = (await _connection.Table<Boleta>().Where(bol => bol.Aprobada).ToListAsync()).Select(x => x.IdAsignatura).ToList();
-            var inscripciones = await _connection.Table<Horario>()
-               .Where(horario => horario.Enabled == true &&
-                horario.IdReticula == idReticula &&
-                horario.Semestre <= semester && 
-                !calificaciones.Contains(horario.AsignaturaClave)).OrderBy(insc => insc.Semestre).ToListAsync();
-            if(inscripciones.Count() > 0)
+            IEnumerable<Boleta> boleta = await _connection.Table<Boleta>().Where(b => b.Cursando == true && b.IdAlumno == StaticUsuario.Id).ToListAsync();
+            if(boleta.Count() > 0)
             {
-                return inscripciones.AsEnumerable();
+                return null;
             }
-            return null;
+            else
+            {
+                int idReticula = (await _connection.Table<AlumnoReticula>().Where(alret => alret.IdAlumno == id).FirstOrDefaultAsync()).IdReticula;
+                var semester = Int16.Parse(StaticUsuario.Semestre.Split(' ').ElementAt(1));
+                List<string> calificaciones = (await _connection.Table<Boleta>().Where(bol => bol.Aprobada && bol.IdAlumno == StaticUsuario.Id).ToListAsync()).Select(x => x.IdAsignatura).ToList();
+                var inscripciones = await _connection.Table<Horario>()
+                   .Where(horario => horario.Enabled == true &&
+                    horario.IdReticula == idReticula &&
+                    horario.Semestre <= semester &&
+                    !calificaciones.Contains(horario.AsignaturaClave)).OrderBy(insc => insc.Semestre).ToListAsync();
+                if (inscripciones.Count() > 0)
+                {
+                    return inscripciones.AsEnumerable();
+                }
+                return null;
+            }
         }
 
         public async Task<string> GetCarrera()
@@ -843,6 +851,24 @@ namespace ProyectoSII.Data
             }catch(Exception ex) {
                 return false;
             }
+        }
+
+        public async Task SaveInscripcion(List<InscripcionesModel> lista)
+        {
+            List<Boleta> boleta = new List<Boleta>();
+            foreach (var inscripcion in lista)
+            {
+                boleta.Add(new Boleta
+                {
+                    Aprobada = false,
+                    Calificacion = 0,
+                    IdAlumno = StaticUsuario.Id,
+                    IdAsignatura = inscripcion.ClaveMateria,
+                    Cursando = true,
+                });
+            }
+
+            await _connection.InsertAllAsync(boleta);
         }
     }
 }

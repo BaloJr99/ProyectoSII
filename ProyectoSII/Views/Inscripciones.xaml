@@ -5,9 +5,68 @@
              Title="Inscripciones">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout x:Name="mainPage" VerticalOptions="CenterAndExpand"
+            <StackLayout x:Name="mainPage"
                      HorizontalOptions="CenterAndExpand" Orientation="Vertical">
+                <Grid BackgroundColor="LightGray">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="-" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+                    <Label Text="MATERIA" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+                    <Label Text="SEM" VerticalTextAlignment="Center" Grid.Column="2" Grid.Row="0"/>
+                    <Label Text="MAESTRO" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="3" Grid.Row="0"/>
+                    <Label Text="LUN" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="4" Grid.Row="0"/>
+                    <Label Text="MAR" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="5" Grid.Row="0"/>
+                    <Label Text="MIER" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="6" Grid.Row="0"/>
+                    <Label Text="JUE" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="7" Grid.Row="0"/>
+                    <Label Text="VIE" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="8" Grid.Row="0"/>
+                </Grid>
+                <ListView ItemsSource="{Binding ListaInscripciones}" HeightRequest="200" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
+                                    <CheckBox IsChecked="{Binding IsChecked}" Grid.Column="0"/>
+                                    <Label Text="{Binding Maestro}" Grid.Column="1" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Semestre}" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding Materia}" Grid.Column="3" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Lunes}" Grid.Column="4" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Martes}" Grid.Column="5" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Miercoles}" Grid.Column="6" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Jueves}" Grid.Column="7" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Viernes}" Grid.Column="8" VerticalTextAlignment="Center"/> 
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout>
+                    <Button Text="Inscribir" Command="{Binding GuardarInscripcion}" CornerRadius="5" TextColor="White" BackgroundColor="DeepSkyBlue" HorizontalOptions="FillAndExpand" Margin="20,20"/>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

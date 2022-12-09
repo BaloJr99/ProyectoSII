@@ -16,5 +16,6 @@ namespace ProyectoSII.Models
         public string IdAsignatura { get; set; }
         public float Calificacion { get; set; }
         public bool Aprobada { get; set; }
+        public bool Cursando { get; set; }
     }
 }

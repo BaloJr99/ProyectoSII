@@ -1,4 +1,5 @@
 ﻿using ProyectoSII.Models;
+using ProyectoSII.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +16,16 @@ namespace ProyectoSII.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Inscripciones : ContentPage
     {
+        InscripcionesVM inscripcionesVM;
         public Inscripciones()
         {
-            InitializeComponent(); 
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                getInscripciones();
-            });
+            InitializeComponent();
+            inscripcionesVM = new InscripcionesVM();
+            this.BindingContext = inscripcionesVM;
+            //Device.BeginInvokeOnMainThread(() =>
+            //{
+            //    getInscripciones();
+            //});
         }
 
         protected override void OnAppearing()
