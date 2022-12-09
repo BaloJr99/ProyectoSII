@@ -190,4 +190,19 @@
     <BundleResource Include="Resources\test.png" />
     <BundleResource Include="Resources\warning.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\github.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\myprofile.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\phone.png" />
+  </ItemGroup>
 </Project>

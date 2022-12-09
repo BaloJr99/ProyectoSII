@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSII.Views.AcercaDe">
+    <ContentPage.Content>
+        <Grid>
+            <BoxView x:Name="bdGradient" Scale="4" AnchorX="1" AnchorY="0">
+                <BoxView.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#23D5AB" Offset="0.3"/>
+                        <GradientStop Color="#23A605" Offset="0.5"/>
+                        <GradientStop Color="#E73C7E" Offset="0.7"/>
+                        <GradientStop Color="#EE7752" Offset="1.0"/>
+                        
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+            <Frame BackgroundColor="Transparent">
+                <StackLayout>
+                    <Frame CornerRadius="1000" BackgroundColor="Transparent" BorderColor="Transparent" Margin="50, 50, 50, 0">
+                        <Image Source="myprofile.jpg" Scale="1.2"/>
+                    </Frame>
+                    <StackLayout>
+                        <Label Text="Braulio Chávez Martínez" Margin="20" FontSize="20" HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Image Source="github.png" WidthRequest="30"/>
+                        <Label Text="BaloJr99" Margin="20,0" FontSize="20" HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Image Source="phone.png" WidthRequest="30"/>
+                        <Label Text="878-119-4465" Margin="20, 0" FontSize="20" HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Image Source="email.png" WidthRequest="30"/>
+                        <Label Text="balochavezmtz99@hotmail.com" Margin="0, 0" FontSize="20" HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </StackLayout> 
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
